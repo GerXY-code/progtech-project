@@ -1,12 +1,9 @@
 package com.example.spotifly;
 
-import android.util.Log;
-import android.widget.TextView;
-
-public class RegisterUser extends UserDecoratorBase{
+public class VerifyUserInputs extends UserDecoratorBase{
 
     //username_f_register_input_txt
-    public RegisterUser(UserBase u) {
+    public VerifyUserInputs(UserBase u) {
         super(u);
 
 

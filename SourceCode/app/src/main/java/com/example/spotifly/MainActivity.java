@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             {
 
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.206/test", "root", "");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.45/test", "root", "");
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM test.test");
                 while(resultSet.next()) {
