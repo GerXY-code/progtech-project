@@ -21,7 +21,7 @@ public class VerifyUserInputs extends UserDecoratorBase{
 
     public String passwordVerify(String passwordParam){
         String password = passwordParam;
-        return passwordParam;
+        return password;
     }
 
 
