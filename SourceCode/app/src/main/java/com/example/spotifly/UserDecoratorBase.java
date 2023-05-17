@@ -20,9 +20,6 @@ public abstract class UserDecoratorBase extends UserBase {
         return user.Password;
     };
 
-    @Override
-    public void registration(){
 
-    };
 
 }

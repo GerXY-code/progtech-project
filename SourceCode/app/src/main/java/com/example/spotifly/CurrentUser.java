@@ -1,24 +1,34 @@
 package com.example.spotifly;
 
+import android.os.Bundle;
+import android.widget.EditText;
+
 public class CurrentUser extends UserBase{
+
+
+    String setUserName;
+    String setEmail;
+    String setPassword;
+   public CurrentUser(String username, String email, String password){
+       setUserName = username;
+       setEmail    = email;
+       setPassword    = password;
+   }
 
     @Override
     public String getUserName(){
-        String username = (String)findViewById(R.id.username_f_register_input_txt).toString();
+        String username = setUserName;
         return username;
     };
     @Override
     public String getEmail(){
-        String email = (String)findViewById(R.id.email_f_register_input_txt).toString();
+        String email = setEmail;
         return email;
     }
     @Override
     public String getPassword(){
-        String password = (String)findViewById(R.id.password_f_register_input_txt).toString();
+        String password = setPassword;
         return password;
     }
-    @Override
-    public void registration(){
 
-    }
 }
