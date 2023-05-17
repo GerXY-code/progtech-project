@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         show = (Button) findViewById(R.id.login_btn);
 
+
+
         show.setOnClickListener(new View.OnClickListener() {
 
             @Override

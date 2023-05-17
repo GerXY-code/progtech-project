@@ -11,7 +11,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_page);
-        goBackFromRegisterPage();
+        //goBackFromRegisterPage();
+        RegisterUser();
     }
 
     public void goBackFromRegisterPage(){
@@ -22,6 +23,20 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(new Intent(RegisterActivity.this, MainActivity.class
                 ));
             }
+        });
+    }
+
+    public void RegisterUser(){
+        Button btn_reg = (Button)findViewById(R.id.reg_btn);
+        btn_reg.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                CurrentUser cu = new CurrentUser();
+                RegisterUser ru = new RegisterUser(cu);
+                ru.registration();
+
+            }
+
         });
     }
 
