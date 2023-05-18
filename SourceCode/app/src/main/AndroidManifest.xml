@@ -28,6 +28,9 @@
         <activity android:name=".CurrentUser"
             android:exported="true">
         </activity>
+        <activity android:name=".HomePageActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

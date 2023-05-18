@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
     TextView text,errorText;
@@ -50,40 +51,58 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //username = UserName.getText().toString();
                 username = UserName.getText().toString();
                 password = Password.getText().toString();
-                //Integer hashedPassword = password.hashCode();
-                //convertedHashedPassword = hashedPassword.toString();
-                new Async().execute();
+                Integer hashedPassword = password.hashCode();
+                convertedHashedPassword = hashedPassword.toString();
+                //new Async().execute();
+                Async task = new Async();
+                try {
+                    Boolean result = task.execute().get();
+                    if (result){
+                        startActivity(new Intent(MainActivity.this, HomePageActivity.class));
+                    }
+                } catch (ExecutionException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
 
+    public void goToHomePage(){
+        startActivity(new Intent(MainActivity.this, HomePageActivity.class));
+    }
+
 }
-class Async extends AsyncTask<String,String, String> {
+class Async extends AsyncTask<Boolean,Boolean, Boolean> {
     String username=MainActivity.username;
+    String password = MainActivity.convertedHashedPassword;
     String records = "",error="";
 
+    MainActivity mainActivity = new MainActivity();
+
+
     @Override
-    protected String doInBackground(String... strings) {
+    protected Boolean doInBackground(Boolean... Boolean) {
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.206/spotifly", "root", "");
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT username, password FROM spotifly.users WHERE username=('"+username+"')");
+            ResultSet resultSet = statement.executeQuery(
+                    "SELECT username, password FROM spotifly.users WHERE username=('"+username+"') AND password=('"+password+"')");
             while(resultSet.next()) {
                 records += resultSet.getString(1) + " " + resultSet.getString(2) + "\n";
             }
             if (records==""){
                 Log.d("hiba", "Sikertelen Login");
-                Log.d("rekordok:", records);
+                return false;
             }
             else{
                 Log.d("siker","Sikeres login");
-                Log.d("rekordok:", records);
-                Log.d("fnev", username);
+                return true;
             }
         }
 
@@ -92,22 +111,7 @@ class Async extends AsyncTask<String,String, String> {
             error = e.toString();
             Log.i("errr", error);
         }
-        return null;
+        return false;
     }
 
-
-
-    @Override
-    protected void onPostExecute(String st) {
-
-        /*
-        text.setText(records);
-
-        if(error != "")
-
-            errorText.setText(error);
-
-        super.onPostExecute(st);
-        */
-    }
 }
