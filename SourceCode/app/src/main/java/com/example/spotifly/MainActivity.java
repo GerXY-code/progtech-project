@@ -17,6 +17,7 @@ import java.sql.Statement;
 
 public class MainActivity extends AppCompatActivity {
     TextView text,errorText;
+    public static String userName, password;
 
     Button show;
     @Override
@@ -24,32 +25,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         goToRegisterPage();
+
         text = (TextView) findViewById(R.id.appName_txt2);
-
-
         show = (Button) findViewById(R.id.login_btn);
 
-
-
         show.setOnClickListener(new View.OnClickListener() {
-
             @Override
-
             public void onClick(View view) {
-
                 new Async().execute();
-
             }
-
         });
     }
-
     /*
     public void setMyName(){
         TextView tvName = (TextView)findViewById(R.id.textView1);
         tvName.setText("Hello Gergő!");
     }*/
-
     public void goToRegisterPage(){
         Button btn = (Button)findViewById(R.id.register_navigate_btn);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -59,49 +50,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    
     class Async extends AsyncTask<Void, Void, Void> {
-
-
-
         String records = "",error="";
 
         @Override
-
         protected Void doInBackground(Void... voids) {
-
             try
-
             {
-
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.45/test", "root", "");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.206/test", "root", "");
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM test.test");
+                ResultSet resultSet = statement.executeQuery(
+                        "SELECT username, password FROM spotifly.users WHERE username=('"+userName+"') && password=('"+password+"') ");
                 while(resultSet.next()) {
-
                     records += resultSet.getString(1) + " " + resultSet.getString(2) + "\n";
-
                 }
-
+                if (records==""){
+                    Log.d("hiba", "sikertelen Login");
+                }
             }
 
             catch(Exception e)
-
             {
-
                 error = e.toString();
                 Log.i("errr", error);
-
             }
-
             return null;
-
         }
 
 
 
         @Override
-
         protected void onPostExecute(Void aVoid) {
 
             text.setText(records);
@@ -113,9 +93,6 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
 
         }
-
-
-
 
 
     }

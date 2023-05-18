@@ -3,18 +3,15 @@ package com.example.spotifly;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.hardware.biometrics.BiometricManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 public class RegisterActivity extends AppCompatActivity {
     EditText username,email,password;
@@ -62,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.d("email", emailVerified);
                 Log.d("password", hashedPassword);
 
-                new Async().execute();
+                new AsyncRegister().execute();
 
 
 
@@ -74,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 }
 
 
- class Async extends AsyncTask<String, String, String> {
+ class AsyncRegister extends AsyncTask<String, String, String> {
 
 
     String records = "", error = "";
@@ -89,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.45/spotifly", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.206/spotifly", "root", "");
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO users(username,email,password) VALUES('"+username+"','"+email+"','"+password+"')");
 
