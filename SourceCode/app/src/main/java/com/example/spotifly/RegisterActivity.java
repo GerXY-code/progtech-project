@@ -18,7 +18,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 public class RegisterActivity extends AppCompatActivity {
     EditText username,email,password;
-    public static String usernameVerified,emailVerified,passwordVerified;
+    public static String usernameVerified,emailVerified,passwordVerified,hashedPassword;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_page);
@@ -50,14 +51,16 @@ public class RegisterActivity extends AppCompatActivity {
                 String Password = password.getText().toString();
                 CurrentUser cu = new CurrentUser(UserName, Email, Password);
                 VerifyUserInputs ru = new VerifyUserInputs(cu);
-                 usernameVerified = ru.userNameVerify(cu.getUserName());
-                 emailVerified = ru.emailVerify(cu.getEmail());
-                 passwordVerified = ru.passwordVerify(cu.getPassword());
+                usernameVerified = ru.userNameVerify();
+                emailVerified = ru.emailVerify();
+                passwordVerified = ru.passwordVerify();
 
+                PasswordHashing pwH = new PasswordHashing(cu);
+                hashedPassword = pwH.hashThePassword(passwordVerified);
 
                 Log.d("username", usernameVerified);
                 Log.d("email", emailVerified);
-                Log.d("password", passwordVerified);
+                Log.d("password", hashedPassword);
 
                 new Async().execute();
 
@@ -77,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
     String records = "", error = "";
     String username = RegisterActivity.usernameVerified;
      String email = RegisterActivity.emailVerified;
-     String password = RegisterActivity.passwordVerified;
+     String password = RegisterActivity.hashedPassword;
 
 
     @Override
