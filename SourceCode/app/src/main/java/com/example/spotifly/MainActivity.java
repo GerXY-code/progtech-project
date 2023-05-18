@@ -29,28 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         goToRegisterPage();
 
-        UserName = (EditText)findViewById(R.id.username_input_txt);
-        Password = (EditText)findViewById(R.id.password_input_txt);
+        UserName = (EditText) findViewById(R.id.username_input_txt);
+        Password = (EditText) findViewById(R.id.password_input_txt);
 
         login();
 
-        text = (TextView) findViewById(R.id.appName_txt2);
-        show = (Button) findViewById(R.id.login_btn);
 
-
-
-        show.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new Async().execute();
-            }
-        });
     }
-    /*
-    public void setMyName(){
-        TextView tvName = (TextView)findViewById(R.id.textView1);
-        tvName.setText("Hello Gergő!");
-    }*/
     public void goToRegisterPage(){
         Button btn = (Button)findViewById(R.id.register_navigate_btn);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -66,11 +51,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //username = UserName.getText().toString();
-                username = "dddddd";
+                username = UserName.getText().toString();
                 password = Password.getText().toString();
-                Log.d("nev:", username);
-                Integer hashedPassword = password.hashCode();
-                convertedHashedPassword = hashedPassword.toString();
+                //Integer hashedPassword = password.hashCode();
+                //convertedHashedPassword = hashedPassword.toString();
                 new Async().execute();
             }
         });
@@ -86,10 +70,9 @@ class Async extends AsyncTask<String,String, String> {
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.206:3306/spotifly", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.206/spotifly", "root", "");
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(
-                    "SELECT username, password FROM spotifly.users WHERE username='dani'");
+            ResultSet resultSet = statement.executeQuery("SELECT username, password FROM spotifly.users WHERE username=('"+username+"')");
             while(resultSet.next()) {
                 records += resultSet.getString(1) + " " + resultSet.getString(2) + "\n";
             }
@@ -100,7 +83,7 @@ class Async extends AsyncTask<String,String, String> {
             else{
                 Log.d("siker","Sikeres login");
                 Log.d("rekordok:", records);
-                Log.d("fnev:", username);
+                Log.d("fnev", username);
             }
         }
 
