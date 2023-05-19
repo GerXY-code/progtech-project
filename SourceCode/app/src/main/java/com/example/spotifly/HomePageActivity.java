@@ -22,11 +22,12 @@ import java.util.concurrent.ExecutionException;
 
 public class HomePageActivity extends AppCompatActivity {
 
-
+    ListView musicList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
+        musicList = (ListView)findViewById(R.id.music_list);
         Playlist p = new Playlist();
         PlaylistCommand addToPlaylistCommand      = new PlaylistCommand(p,Action.AddNewMusic,"armanen");
         PlaylistCommand removeFromPlaylistCommand = new PlaylistCommand(p,Action.RemoveMusicFrom, "armanen");
@@ -45,13 +46,11 @@ public class HomePageActivity extends AppCompatActivity {
         AsyncGetMusics task = new AsyncGetMusics();
         try {
             musics = task.execute().get();
-            for (int i = 0; i < musics.size(); i++) {
-
-
-            }
-            Log.d("Cim", musics.get(0)[0]);
-            Log.d("Szerző", musics.get(0)[1]);
-            Log.d("Időtartam", musics.get(0)[2]);
+            MusicBaseAdapter mbA = new MusicBaseAdapter(getApplicationContext(),musics);
+            musicList.setAdapter(mbA);
+            Log.d("Title", musics.get(0)[0]);
+            Log.d("Author", musics.get(0)[1]);
+            Log.d("Duration", musics.get(0)[2]);
 
         } catch (ExecutionException e) {
             throw new RuntimeException(e);

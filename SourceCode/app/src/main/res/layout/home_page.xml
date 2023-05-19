@@ -15,12 +15,11 @@
         android:layout_height="wrap_content"
         app:barrierDirection="left" />
 
-    <TextView
-        android:id="@+id/music_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="89dp" />
+    <ListView
+        android:id="@+id/music_list"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

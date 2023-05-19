@@ -32,7 +32,7 @@ public class AsyncGetMusics extends AsyncTask<ArrayList<String[]>, ArrayList<Str
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.206/spotifly", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.45/spotifly", "root", "");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM musics");
             while(resultSet.next()) {
