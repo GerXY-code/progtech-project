@@ -17,6 +17,7 @@ public class PlaylistCommand implements Command{
     public void call() {
         switch (action){
             case AddNewMusic: pl.AddNewMusic(musicName);break;
+            case RemoveMusicFrom: pl.RemoveMusicFrom(musicName);break;
             default: break;
         }
     }
