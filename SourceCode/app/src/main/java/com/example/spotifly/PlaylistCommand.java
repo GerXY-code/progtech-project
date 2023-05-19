@@ -3,11 +3,11 @@ package com.example.spotifly;
 public class PlaylistCommand implements Command{
 
     Playlist pl;
-    Action action;
+    PlaylistAction action;
 
     String musicName;
 
-    public PlaylistCommand(Playlist p, Action action, String musicName){
+    public PlaylistCommand(Playlist p, PlaylistAction action, String musicName){
         this.pl = p;
         this.action = action;
         this.musicName = musicName;

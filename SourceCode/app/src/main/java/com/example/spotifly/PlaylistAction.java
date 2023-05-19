@@ -1,6 +1,6 @@
 package com.example.spotifly;
 
-public enum Action {
+public enum PlaylistAction {
     AddNewMusic,
     RemoveMusicFrom,
 
