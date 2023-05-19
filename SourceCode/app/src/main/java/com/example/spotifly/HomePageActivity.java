@@ -23,7 +23,7 @@ public class HomePageActivity extends AppCompatActivity {
 
 
         Playlist p = new Playlist();
-        PlaylistCommand pc = new PlaylistCommand(p,Action.AddNewMusic,"armanen");
+        PlaylistCommand pc = new PlaylistCommand(p,Action.AddNewMusic,);
         pc.call();
 
 
