@@ -42,9 +42,7 @@ public class HomePageActivity extends AppCompatActivity {
             musics = task.execute().get();
             MusicBaseAdapter mbA = new MusicBaseAdapter(getApplicationContext(),musics);
             musicList.setAdapter(mbA);
-            Log.d("Title", musics.get(0)[0]);
-            Log.d("Author", musics.get(0)[1]);
-            Log.d("Duration", musics.get(0)[2]);
+
 
         } catch (ExecutionException e) {
             throw new RuntimeException(e);

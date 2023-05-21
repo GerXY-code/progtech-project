@@ -1,6 +1,7 @@
 package com.example.spotifly;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class MusicBaseAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.activity_custom_list_view, null);
         TextView txtView = (TextView)convertView.findViewById(R.id.textView);
-        txtView.setText(musicList.get(position)[position]);
+        txtView.setText(musicList.get(0)[position]);
         return convertView;
     }
 }
