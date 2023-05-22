@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -86,10 +88,18 @@ class Async extends AsyncTask<Boolean,Boolean, Boolean> {
 
     @Override
     protected Boolean doInBackground(Boolean... Boolean) {
+        String ip;
+        try {
+          ip =  InetAddress.getHostAddress();
+          Log.d("asd", ip);
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.45/spotifly", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://"+ip+"/spotifly", "root", "");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "SELECT username, password FROM spotifly.users WHERE username=('"+username+"') AND password=('"+password+"')");

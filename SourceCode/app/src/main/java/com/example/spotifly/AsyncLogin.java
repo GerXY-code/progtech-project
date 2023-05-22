@@ -3,6 +3,7 @@ package com.example.spotifly;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -20,7 +21,7 @@ public class AsyncLogin extends AsyncTask<String, String, String> {
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.206/spotifly", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://10.1.187.67/spotifly", "root", "");
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO users(username,email,password) VALUES('"+username+"','"+email+"','"+password+"')");
 
