@@ -17,6 +17,8 @@ import java.util.concurrent.ExecutionException;
 public class HomePageActivity extends AppCompatActivity {
 
     ListView musicList;
+    ArrayList<CurrentMusic> musics = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     protected void getMusics(){
 
-        ArrayList<CurrentMusic> musics = new ArrayList<>();
+
         AsyncGetMusics task = new AsyncGetMusics();
         try {
             musics = task.execute().get();
@@ -52,8 +54,14 @@ public class HomePageActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
         Music m = new Music(this);
-        MusicCommand startMusic = new MusicCommand(m,MusicAction.Start,"two");
-        startMusic.call();
+
+        musicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MusicCommand startMusic = new MusicCommand(m,MusicAction.Start,musics.get(position).rawID);
+                startMusic.call();
+            }
+        });
 
 
     }
