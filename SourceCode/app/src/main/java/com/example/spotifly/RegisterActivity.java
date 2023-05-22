@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 Log.d("username", usernameVerified);
                 Log.d("email", emailVerified);
-              
+
 
                 new AsyncRegister().execute();
 

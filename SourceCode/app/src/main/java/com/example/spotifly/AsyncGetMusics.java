@@ -3,6 +3,9 @@ package com.example.spotifly;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.spotifly.ConnectionInfo;
+import com.example.spotifly.CurrentMusic;
+
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
