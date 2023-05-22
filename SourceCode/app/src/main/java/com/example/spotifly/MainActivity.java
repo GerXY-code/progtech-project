@@ -89,11 +89,12 @@ class Async extends AsyncTask<Boolean,Boolean, Boolean> {
     @Override
     protected Boolean doInBackground(Boolean... Boolean) {
 
+        ConnectionInfo ci = new ConnectionInfo();
 
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.45/spotifly", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://"+ci.IPAddress+"/spotifly", "root", "");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "SELECT username, password FROM spotifly.users WHERE username=('"+username+"') AND password=('"+password+"')");

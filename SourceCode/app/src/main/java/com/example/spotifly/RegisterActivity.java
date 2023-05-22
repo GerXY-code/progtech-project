@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 Log.d("username", usernameVerified);
                 Log.d("email", emailVerified);
-                Log.d("password", hashedPassword);
+              
 
                 new AsyncRegister().execute();
 
@@ -82,11 +82,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected String doInBackground(String... strings) {
+        ConnectionInfo ci = new ConnectionInfo();
 
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.45/spotifly", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://"+ci.IPAddress+"/spotifly", "root", "");
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO users(username,email,password) VALUES('"+username+"','"+email+"','"+password+"')");
 

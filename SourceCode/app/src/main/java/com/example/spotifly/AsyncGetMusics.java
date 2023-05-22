@@ -21,10 +21,12 @@ public class AsyncGetMusics extends AsyncTask<ArrayList<CurrentMusic>, ArrayList
     @Override
     protected ArrayList<CurrentMusic> doInBackground(ArrayList<CurrentMusic>... arrayLists) {
         ArrayList<CurrentMusic> musicList = new ArrayList<>();
+        ConnectionInfo ci = new ConnectionInfo();
+
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.0.45/spotifly", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://"+ci.IPAddress+"/spotifly", "root", "");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM musics");
             while(resultSet.next()) {
