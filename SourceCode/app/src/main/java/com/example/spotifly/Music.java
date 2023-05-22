@@ -1,8 +1,8 @@
 package com.example.spotifly;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
-import android.util.Log;
 
 public class Music {
 
@@ -11,10 +11,15 @@ public class Music {
         this.ctx = ctx;
     }
 
-    public void Start(String musicName){
+    public void Start(String musicID){
 
-      MediaPlayer  mp = MediaPlayer.create(ctx,R.raw.armanen);
+      Resources res = ctx.getResources();
+      int soundId = res.getIdentifier(musicID, "raw", ctx.getPackageName());
+      MediaPlayer  mp = MediaPlayer.create(ctx,soundId);
       mp.start();
+
+
+
     }
     public void Stop(String musicName){
     }

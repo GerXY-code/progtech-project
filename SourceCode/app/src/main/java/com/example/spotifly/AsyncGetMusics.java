@@ -11,28 +11,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AsyncGetMusics extends AsyncTask<ArrayList<String[]>, ArrayList<String[]>, ArrayList<String[]>> {
+public class AsyncGetMusics extends AsyncTask<ArrayList<CurrentMusic>, ArrayList<CurrentMusic>, ArrayList<CurrentMusic>> {
 
 
 
     String error = "";
-    String musicName,author,duration;
-
-    String [] musicTitles = new String[3];
-    String [] musicAuthor = new String[3];
-    String [] musicDuration = new String[3];
-
-    ArrayList<String[]> musicList = new ArrayList<>();
-
-    Integer counter = 0;
-
-
-
 
 
     @Override
-    protected ArrayList<String[]> doInBackground(ArrayList<String[]>... arrayLists) {
-
+    protected ArrayList<CurrentMusic> doInBackground(ArrayList<CurrentMusic>... arrayLists) {
+        ArrayList<CurrentMusic> musicList = new ArrayList<>();
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -40,17 +28,9 @@ public class AsyncGetMusics extends AsyncTask<ArrayList<String[]>, ArrayList<Str
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM musics");
             while(resultSet.next()) {
-                //records += resultSet.getString(1) + " " + resultSet.getString(2) + " " + resultSet.getTime(3) + "\n";
-                musicName = resultSet.getString(2);
-                author    = resultSet.getString(3);
-                duration  = resultSet.getString(4);
-                musicTitles[counter] = musicName;
-                musicAuthor[counter] = author;
-                musicDuration[counter] = duration;
-                counter++;
-                musicList.add(musicTitles);
-                musicList.add(musicTitles);
-                musicList.add(musicTitles);
+                CurrentMusic cm = new CurrentMusic(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5));
+                musicList.add(cm);
+
 
             }
 

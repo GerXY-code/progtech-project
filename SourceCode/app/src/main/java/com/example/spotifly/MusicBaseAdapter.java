@@ -14,11 +14,11 @@ import java.util.ArrayList;
 public class MusicBaseAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<String[]> musicList;
+    ArrayList<CurrentMusic> musicList;
 
     LayoutInflater inflater;
 
-    public MusicBaseAdapter(Context ctx, ArrayList<String[]> musics){
+    public MusicBaseAdapter(Context ctx, ArrayList<CurrentMusic> musics){
         this.context = ctx;
         this.musicList = musics;
         inflater = LayoutInflater.from(ctx);
@@ -42,7 +42,7 @@ public class MusicBaseAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.activity_custom_list_view, null);
         TextView txtView = (TextView)convertView.findViewById(R.id.textView);
-        txtView.setText(musicList.get(0)[position]);
+        txtView.setText(musicList.get(position).title);
         return convertView;
     }
 }

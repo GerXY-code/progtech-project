@@ -36,12 +36,14 @@ public class HomePageActivity extends AppCompatActivity {
 
     protected void getMusics(){
 
-        ArrayList<String[]> musics = new ArrayList<>();
+        ArrayList<CurrentMusic> musics = new ArrayList<>();
         AsyncGetMusics task = new AsyncGetMusics();
         try {
             musics = task.execute().get();
+            Log.d("musics", musics.get(0).title);
             MusicBaseAdapter mbA = new MusicBaseAdapter(getApplicationContext(),musics);
             musicList.setAdapter(mbA);
+
 
 
         } catch (ExecutionException e) {
@@ -50,7 +52,8 @@ public class HomePageActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
         Music m = new Music(this);
-        MusicCommand startMusic = new MusicCommand(m,MusicAction.Start,musics.get(0)[0]);
+        MusicCommand startMusic = new MusicCommand(m,MusicAction.Start,"two");
+        startMusic.call();
 
 
     }
