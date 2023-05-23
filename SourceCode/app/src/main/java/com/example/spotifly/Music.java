@@ -25,8 +25,7 @@ public class Music {
 
 
     }
-    public void Stop(String musicName){
-    }
+
 
     public void Pause(String musicName){
 
