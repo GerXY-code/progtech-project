@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/add_playlist_txt_1"
+    android:id="@+id/home_page"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <androidx.constraintlayout.widget.Barrier
         android:layout_width="wrap_content"
@@ -18,11 +19,11 @@
 
     <ListView
         android:id="@+id/music_list"
-        android:layout_width="350dp"
-        android:layout_height="729dp"
-        android:backgroundTint="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginTop="435dp"
         android:descendantFocusability="blocksDescendants"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,7 +42,9 @@ public class MusicBaseAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.activity_custom_list_view, null);
         TextView txtView = (TextView)convertView.findViewById(R.id.textView);
+        TextView txtView3 = (TextView)convertView.findViewById(R.id.textView3);
         txtView.setText(musicList.get(position).title);
+        txtView3.setText(musicList.get(position).author);
         return convertView;
     }
 }
