@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -17,6 +20,8 @@ public class HomePageActivity extends AppCompatActivity {
 
     ListView musicList;
     ArrayList<CurrentMusic> musics = new ArrayList<>();
+
+    TextView musicTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,7 @@ public class HomePageActivity extends AppCompatActivity {
         PlaylistCommand removeFromPlaylistCommand = new PlaylistCommand(p, PlaylistAction.RemoveMusicFrom, "armanen");
         addToPlaylistCommand.call();
         removeFromPlaylistCommand.call();
-
+        musicTitle = (TextView)findViewById(R.id.music_title);
         getMusics();
 
 
@@ -59,6 +64,7 @@ public class HomePageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MusicCommand startMusic = new MusicCommand(m,MusicAction.Start,musics.get(position).rawID);
                 startMusic.call();
+                musicTitle.setText(musics.get(position).title);
             }
         });
 
