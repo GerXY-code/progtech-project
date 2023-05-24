@@ -40,6 +40,7 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
 
+
     protected void getMusics(){
 
 
@@ -59,12 +60,26 @@ public class HomePageActivity extends AppCompatActivity {
         }
         Music m = new Music(this);
 
+
+
         musicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            Integer MusicClickCount = 0;
+
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MusicCommand startMusic = new MusicCommand(m,MusicAction.Start,musics.get(position).rawID);
-                startMusic.call();
-                musicTitle.setText(musics.get(position).title);
+                if(MusicClickCount%2==1){
+                    MusicCommand pauseMusic = new MusicCommand(m,MusicAction.Replay,musics.get(position).rawID);
+                    pauseMusic.call();
+                    musicTitle.setText(musics.get(position).title);
+                    MusicClickCount++;
+
+                }
+                else{
+                    MusicCommand startMusic = new MusicCommand(m,MusicAction.Start,musics.get(position).rawID);
+                    startMusic.call();
+                    musicTitle.setText(musics.get(position).title);
+                    MusicClickCount++;
+                }
             }
         });
 

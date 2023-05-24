@@ -2,5 +2,7 @@ package com.example.spotifly;
 
 public enum MusicAction {
     Start,
-    Pause
+    Pause,
+    Stop,
+    Replay
 }

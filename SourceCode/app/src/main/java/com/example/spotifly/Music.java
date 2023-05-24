@@ -10,24 +10,25 @@ import org.w3c.dom.Text;
 public class Music {
 
     Context ctx;
+    MediaPlayer mp;
     public Music(Context ctx){
         this.ctx = ctx;
     }
 
     public void Start(String musicID){
-
       Resources res = ctx.getResources();
       int soundId = res.getIdentifier(musicID, "raw", ctx.getPackageName());
-      MediaPlayer  mp = MediaPlayer.create(ctx,soundId);
+      mp = MediaPlayer.create(ctx,soundId);
       mp.start();
-
-
-
-
     }
-
-
-    public void Pause(String musicName){
-
+    public void Pause(){
+        mp.pause();
+    }
+    public void Stop(){
+        mp.stop();
+    }
+    public void Replay(String musicID){
+        mp.stop();
+        Start(musicID);
     }
 }

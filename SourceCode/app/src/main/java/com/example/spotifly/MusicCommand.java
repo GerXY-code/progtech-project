@@ -18,7 +18,9 @@ public class MusicCommand implements Command{
     public void call() {
         switch (action){
             case Start: m.Start(musicName);break;
-            case Pause: m.Pause(musicName);break;
+            case Pause: m.Pause();break;
+            case Stop: m.Stop();break;
+            case Replay: m.Replay(musicName);break;
             default: break;
         }
     }
