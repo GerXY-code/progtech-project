@@ -11,6 +11,7 @@ public class Music {
 
     Context ctx;
     MediaPlayer mp;
+    Integer stoppedAt;
     public Music(Context ctx){
         this.ctx = ctx;
     }
@@ -23,13 +24,13 @@ public class Music {
     }
     public void Pause(){
         mp.pause();
+        stoppedAt = mp.getCurrentPosition();
+    }
+    public void SeekToStart(){
+        mp.start();
+        mp.seekTo(stoppedAt);
     }
     public void Stop(){
-        if(mp!=null){
-            mp.stop();
-            mp.release();
-            mp=null;
-        }
     }
     public void Replay(String musicID){
         mp.reset();

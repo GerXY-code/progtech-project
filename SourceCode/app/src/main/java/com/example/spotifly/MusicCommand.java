@@ -20,6 +20,7 @@ public class MusicCommand implements Command{
         switch (action){
             case Start: m.Start(musicName);break;
             case Pause: m.Pause();break;
+            case SeekToStart: m.SeekToStart();break;
             case Stop: m.Stop();break;
             case Replay: m.Replay(musicName);break;
             default: break;

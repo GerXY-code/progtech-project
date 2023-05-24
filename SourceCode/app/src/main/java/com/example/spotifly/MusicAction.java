@@ -4,5 +4,6 @@ public enum MusicAction {
     Start,
     Pause,
     Stop,
-    Replay
+    Replay,
+    SeekToStart
 }
