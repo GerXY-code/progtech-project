@@ -25,10 +25,14 @@ public class Music {
         mp.pause();
     }
     public void Stop(){
-        mp.stop();
+        if(mp!=null){
+            mp.stop();
+            mp.release();
+            mp=null;
+        }
     }
     public void Replay(String musicID){
-        mp.stop();
+        mp.reset();
         Start(musicID);
     }
 }

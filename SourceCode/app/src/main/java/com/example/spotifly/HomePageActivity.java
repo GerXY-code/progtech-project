@@ -64,14 +64,13 @@ public class HomePageActivity extends AppCompatActivity {
 
         musicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            Integer MusicClickCount = 0;
+            Integer MusicClickCount = 1;
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(MusicClickCount%2==1){
+                if(MusicClickCount!=1){
                     MusicCommand pauseMusic = new MusicCommand(m,MusicAction.Replay,musics.get(position).rawID);
                     pauseMusic.call();
                     musicTitle.setText(musics.get(position).title);
-                    MusicClickCount++;
 
                 }
                 else{
