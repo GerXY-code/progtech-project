@@ -49,8 +49,8 @@
         android:id="@+id/ic_music_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="185dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="370dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_media_play" />
