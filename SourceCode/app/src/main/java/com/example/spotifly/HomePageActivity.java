@@ -35,6 +35,8 @@ public class HomePageActivity extends AppCompatActivity {
         musicList = (ListView)findViewById(R.id.music_list);
         playButton = (ImageView)findViewById(R.id.ic_music_play);
         pauseButton = (ImageView)findViewById(R.id.ic_music_stop);
+        playButton.setVisibility(View.INVISIBLE);
+        pauseButton.setVisibility(View.INVISIBLE);
         Playlist p = new Playlist();
         PlaylistCommand addToPlaylistCommand      = new PlaylistCommand(p, PlaylistAction.AddNewMusic,"armanen");
         PlaylistCommand removeFromPlaylistCommand = new PlaylistCommand(p, PlaylistAction.RemoveMusicFrom, "armanen");
@@ -80,6 +82,9 @@ public class HomePageActivity extends AppCompatActivity {
                     pauseMusic.call();
                     Position = musics.get(position).rawID;
                     musicTitle.setText(musics.get(position).title);
+                    pauseButton.setVisibility(View.VISIBLE);
+                    playButton.setVisibility(View.INVISIBLE);
+
 
                 }
                 else{
@@ -88,6 +93,9 @@ public class HomePageActivity extends AppCompatActivity {
                     Position = musics.get(position).rawID;
                     musicTitle.setText(musics.get(position).title);
                     MusicClickCount++;
+                    pauseButton.setVisibility(View.VISIBLE);
+                    playButton.setVisibility(View.INVISIBLE);
+
                 }
             }
         });
@@ -96,6 +104,8 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MusicCommand startMusic = new MusicCommand(m,MusicAction.SeekToStart,Position);
+                playButton.setVisibility(View.INVISIBLE);
+                pauseButton.setVisibility(View.VISIBLE);
                 startMusic.call();
             }
         });
@@ -103,6 +113,8 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MusicCommand startMusic = new MusicCommand(m,MusicAction.Pause,Position);
+                pauseButton.setVisibility(View.INVISIBLE);
+                playButton.setVisibility(View.VISIBLE);
                 startMusic.call();
             }
         });
