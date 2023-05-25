@@ -29,7 +29,7 @@ public class HomePageActivity extends AppCompatActivity {
     String Position;
     ArrayList<CurrentMusic> musics = new ArrayList<>();
 
-    TextView musicTitle;
+    TextView musicTitle, music_author;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class HomePageActivity extends AppCompatActivity {
         playButton = (ImageView)findViewById(R.id.ic_music_play);
         pauseButton = (ImageView)findViewById(R.id.ic_music_stop);
         music_cover = (ImageView)findViewById(R.id.music_cover);
+        music_author = (TextView)findViewById(R.id.music_author);
         music_cover.setVisibility(View.INVISIBLE);
         playButton.setVisibility(View.INVISIBLE);
         pauseButton.setVisibility(View.INVISIBLE);
@@ -87,6 +88,7 @@ public class HomePageActivity extends AppCompatActivity {
                     pauseMusic.call();
                     Position = musics.get(position).rawID;
                     musicTitle.setText(musics.get(position).title);
+                    music_author.setText(musics.get(position).author);
                     pauseButton.setVisibility(View.VISIBLE);
                     playButton.setVisibility(View.INVISIBLE);
                     String variableValue = musics.get(position).rawID;
@@ -99,6 +101,7 @@ public class HomePageActivity extends AppCompatActivity {
                     startMusic.call();
                     Position = musics.get(position).rawID;
                     musicTitle.setText(musics.get(position).title);
+                    music_author.setText(musics.get(position).author);
                     MusicClickCount++;
                     pauseButton.setVisibility(View.VISIBLE);
                     playButton.setVisibility(View.INVISIBLE);
