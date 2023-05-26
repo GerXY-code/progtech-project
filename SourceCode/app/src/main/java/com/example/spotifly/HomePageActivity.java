@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -20,8 +20,7 @@ import java.util.concurrent.ExecutionException;
 public class HomePageActivity extends AppCompatActivity {
 
     ListView musicList;
-    ImageView playButton;
-    ImageView pauseButton;
+    FloatingActionButton playButton,pauseButton;
 
     ImageView music_cover;
 
@@ -36,8 +35,8 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
         musicList = (ListView)findViewById(R.id.music_list);
-        playButton = (ImageView)findViewById(R.id.ic_music_play);
-        pauseButton = (ImageView)findViewById(R.id.ic_music_stop);
+        playButton = (FloatingActionButton) findViewById(R.id.action_start);
+        pauseButton = (FloatingActionButton) findViewById(R.id.action_pause);
         music_cover = (ImageView)findViewById(R.id.music_cover);
         music_author = (TextView)findViewById(R.id.music_author);
         music_cover.setVisibility(View.INVISIBLE);
