@@ -1,5 +1,6 @@
 package com.example.spotifly;
 
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.concurrent.ExecutionException;
@@ -16,7 +17,17 @@ public class Playlist {
 
     public void CreateNewPlaylist(String playListName,Integer userID) throws ExecutionException, InterruptedException {
             //Log.d("playlistName", playListName);
-            CreatePlaylistAsync cpA = new CreatePlaylistAsync(playListName);
+            GetLoggedUserAsync task = new GetLoggedUserAsync();
+            try {
+                userID = task.execute().get();
+                //Log.d("userID", userID.toString());
+
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            CreatePlaylistAsync cpA = new CreatePlaylistAsync(playListName,userID);
             cpA.execute().get();
     }
 
