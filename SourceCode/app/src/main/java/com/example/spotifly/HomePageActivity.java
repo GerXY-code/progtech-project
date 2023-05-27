@@ -43,10 +43,10 @@ public class HomePageActivity extends AppCompatActivity {
         playButton.setVisibility(View.INVISIBLE);
         pauseButton.setVisibility(View.INVISIBLE);
         Playlist p = new Playlist();
-        PlaylistCommand addToPlaylistCommand      = new PlaylistCommand(p, PlaylistAction.AddNewMusic,"armanen");
-        PlaylistCommand removeFromPlaylistCommand = new PlaylistCommand(p, PlaylistAction.RemoveMusicFrom, "armanen");
-        addToPlaylistCommand.call();
-        removeFromPlaylistCommand.call();
+        //PlaylistCommand addToPlaylistCommand      = new PlaylistCommand(p, PlaylistAction.AddNewMusic,"armanen");
+        //PlaylistCommand removeFromPlaylistCommand = new PlaylistCommand(p, PlaylistAction.RemoveMusicFrom, "armanen");
+        //addToPlaylistCommand.call();
+        //removeFromPlaylistCommand.call();
         musicTitle = (TextView)findViewById(R.id.music_title);
         getMusics();
 

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Boolean result = task.execute().get();
                     if (result){
-                        startActivity(new Intent(MainActivity.this, HomePageActivity.class));
+                        startActivity(new Intent(MainActivity.this, LandingPageActivity.class));
                     }
                 } catch (ExecutionException e) {
                     throw new RuntimeException(e);
