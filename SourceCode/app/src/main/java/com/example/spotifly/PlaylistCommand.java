@@ -30,7 +30,7 @@ public class PlaylistCommand implements Command{
     public void call() throws ExecutionException, InterruptedException {
         switch (action){
             case AddNewMusic: pl.AddNewMusic(musicID);break;
-            case RemoveMusicFrom: pl.RemoveMusicFrom(musicName);break;
+            case RemoveMusicFrom: pl.RemoveMusicFrom(musicID);break;
             case CreatePlaylist: pl.CreateNewPlaylist(playlistName,userID);break;
             case DeletePlaylist: pl.DeletePlaylist(userID,playlistID);
             default: break;

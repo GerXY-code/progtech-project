@@ -14,7 +14,10 @@ public class Playlist {
         AsyncAddMusicToPlaylist mToPl = new AsyncAddMusicToPlaylist(musicID);
         mToPl.execute();
     }
-    public void RemoveMusicFrom(String musicName) {Log.d("zene sikeresen eltávolítva a lejátszási listából", musicName);
+    public void RemoveMusicFrom(Integer musicID) {
+        //Log.d("zene sikeresen eltávolítva a lejátszási listából", musicName);
+        AsyncRemoveMusicFromPlaylist mRfPl = new AsyncRemoveMusicFromPlaylist(musicID);
+        mRfPl.execute();
     }
 
     public void CreateNewPlaylist(String playListName,Integer userID) throws ExecutionException, InterruptedException {
