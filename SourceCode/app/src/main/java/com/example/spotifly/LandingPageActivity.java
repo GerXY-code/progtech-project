@@ -23,6 +23,8 @@ public class LandingPageActivity extends AppCompatActivity {
 
     String playlistName = "", musicName;
 
+    Integer currentMusicID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,7 @@ public class LandingPageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 playlistName = playlist_name_editor.getText().toString();
                 Playlist p = new Playlist();
-                PlaylistCommand createPlaylsit = new PlaylistCommand(p,PlaylistAction.CreatePlaylist,musicName, playlistName);
+                PlaylistCommand createPlaylsit = new PlaylistCommand(p,PlaylistAction.CreatePlaylist,currentMusicID, playlistName);
                 try {
                     createPlaylsit.call();
                 } catch (ExecutionException e) {

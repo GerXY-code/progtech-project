@@ -33,7 +33,7 @@ public class AsyncGetMusics extends AsyncTask<ArrayList<CurrentMusic>, ArrayList
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM musics");
             while(resultSet.next()) {
-                CurrentMusic cm = new CurrentMusic(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5));
+                CurrentMusic cm = new CurrentMusic(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5));
                 musicList.add(cm);
 
 

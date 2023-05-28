@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -15,7 +16,6 @@ public class MusicBaseAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<CurrentMusic> musicList;
-
     LayoutInflater inflater;
 
     public MusicBaseAdapter(Context ctx, ArrayList<CurrentMusic> musics){
