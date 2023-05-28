@@ -45,17 +45,15 @@ public class HomePageActivity extends AppCompatActivity {
         music_author = (TextView)findViewById(R.id.music_author);
         addToPlaylistButton = (FloatingActionButton)findViewById(R.id.add_to_playlist_btn);
         music_cover.setVisibility(View.INVISIBLE);
-        playButton.setVisibility(View.INVISIBLE);
-        pauseButton.setVisibility(View.INVISIBLE);
+
+        AudioPlayer au = new AudioPlayer(2,pauseButton,playButton);
+        au.audioPlayerSetState();
+
         addToPlaylistButton.setVisibility(View.INVISIBLE);
         removeFromPlaylistButton = (FloatingActionButton)findViewById(R.id.remove_btn_from_playlist);
         removeFromPlaylistButton.setVisibility(View.INVISIBLE);
 
-        Playlist p = new Playlist();
-        //PlaylistCommand addToPlaylistCommand      = new PlaylistCommand(p, PlaylistAction.AddNewMusic,"armanen");
-        //PlaylistCommand removeFromPlaylistCommand = new PlaylistCommand(p, PlaylistAction.RemoveMusicFrom, "armanen");
-        //addToPlaylistCommand.call();
-        //removeFromPlaylistCommand.call();
+
         musicTitle = (TextView)findViewById(R.id.music_title);
         getMusics();
         checkTheAddedMusics();
@@ -113,8 +111,18 @@ public class HomePageActivity extends AppCompatActivity {
                     Position = musics.get(position).rawID;
                     musicTitle.setText(musics.get(position).title);
                     music_author.setText(musics.get(position).author);
-                    pauseButton.setVisibility(View.VISIBLE);
-                    playButton.setVisibility(View.INVISIBLE);
+
+
+
+                    AudioPlayer au = new AudioPlayer(1,pauseButton,playButton);
+                    au.audioPlayerSetState();
+
+
+
+
+
+
+
                     String variableValue = musics.get(position).rawID;
                     music_cover.setImageResource(getResources().getIdentifier(variableValue, "drawable", getPackageName()));
                     music_cover.setVisibility(View.VISIBLE);
@@ -153,8 +161,8 @@ public class HomePageActivity extends AppCompatActivity {
                     musicTitle.setText(musics.get(position).title);
                     music_author.setText(musics.get(position).author);
                     MusicClickCount++;
-                    pauseButton.setVisibility(View.VISIBLE);
-                    playButton.setVisibility(View.INVISIBLE);
+                    AudioPlayer au = new AudioPlayer(1,pauseButton,playButton);
+                    au.audioPlayerSetState();
                     String variableValue = musics.get(position).rawID;
                     music_cover.setImageResource(getResources().getIdentifier(variableValue, "drawable", getPackageName()));
                     music_cover.setVisibility(View.VISIBLE);
@@ -190,17 +198,18 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MusicCommand startMusic = new MusicCommand(m,MusicAction.SeekToStart,Position);
-                playButton.setVisibility(View.INVISIBLE);
-                pauseButton.setVisibility(View.VISIBLE);
+                AudioPlayer au = new AudioPlayer(1,pauseButton,playButton);
+                au.audioPlayerSetState();
                 startMusic.call();
+
             }
         });
         pauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MusicCommand startMusic = new MusicCommand(m,MusicAction.Pause,Position);
-                pauseButton.setVisibility(View.INVISIBLE);
-                playButton.setVisibility(View.VISIBLE);
+                AudioPlayer au = new AudioPlayer(0,pauseButton,playButton);
+                au.audioPlayerSetState();
                 startMusic.call();
 
             }
