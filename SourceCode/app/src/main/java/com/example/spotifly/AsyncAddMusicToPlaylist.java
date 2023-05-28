@@ -9,6 +9,8 @@ import java.sql.Statement;
 
 public class AsyncAddMusicToPlaylist extends AsyncTask {
     Integer musicID;
+
+    String username = MainActivity.username;
     public AsyncAddMusicToPlaylist(Integer musicID){
         this.musicID = musicID;
     }
@@ -22,7 +24,7 @@ public class AsyncAddMusicToPlaylist extends AsyncTask {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://"+ci.IPAddress+"/spotifly", "root", "");
             Statement statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO playlist_music(playlist_id,music_id) VALUES(1,'"+musicID+"')");
+            statement.executeUpdate("INSERT INTO playlist_music(playlist_id,music_id) VALUES((SELECT playlist_id FROM user_playlist JOIN users ON user_playlist.user_id = users.id WHERE users.username = ('"+username+"')),'"+musicID+"'); ");
 
 
         } catch (Exception e) {
