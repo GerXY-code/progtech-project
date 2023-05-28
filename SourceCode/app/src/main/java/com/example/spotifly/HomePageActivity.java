@@ -58,6 +58,12 @@ public class HomePageActivity extends AppCompatActivity {
         //removeFromPlaylistCommand.call();
         musicTitle = (TextView)findViewById(R.id.music_title);
         getMusics();
+        checkTheAddedMusics();
+        Music m = new Music(this);
+
+    }
+
+    public void checkTheAddedMusics(){
         CheckTheMusicStateAsync task = new CheckTheMusicStateAsync();
         try {
             musicsAdded = task.execute().get();
@@ -68,8 +74,6 @@ public class HomePageActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        Music m = new Music(this);
-
     }
 
 
@@ -114,7 +118,7 @@ public class HomePageActivity extends AppCompatActivity {
                     String variableValue = musics.get(position).rawID;
                     music_cover.setImageResource(getResources().getIdentifier(variableValue, "drawable", getPackageName()));
                     music_cover.setVisibility(View.VISIBLE);
-
+                    checkTheAddedMusics();
 
                     for (int i = 0; i < musicsAdded.size(); i++) {
                         //Log.d("elements", musicsAdded.get(i).toString());
@@ -154,6 +158,8 @@ public class HomePageActivity extends AppCompatActivity {
                     String variableValue = musics.get(position).rawID;
                     music_cover.setImageResource(getResources().getIdentifier(variableValue, "drawable", getPackageName()));
                     music_cover.setVisibility(View.VISIBLE);
+                    checkTheAddedMusics();
+
                     for (int i = 0; i < musicsAdded.size(); i++) {
                         //Log.d("elements", musicsAdded.get(i).toString());
                         if(musics.get(position).id == musicsAdded.get(i)) {
