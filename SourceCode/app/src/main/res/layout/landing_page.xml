@@ -67,6 +67,7 @@
         android:hint="Name your playlist..."
         android:inputType="text"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
