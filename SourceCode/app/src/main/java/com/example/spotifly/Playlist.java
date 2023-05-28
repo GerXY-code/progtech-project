@@ -10,7 +10,9 @@ public class Playlist {
 
 
     public void AddNewMusic(Integer musicID){
-        Log.d("Music ID for add", musicID.toString());
+        //Log.d("Music ID for add", musicID.toString());
+        AsyncAddMusicToPlaylist mToPl = new AsyncAddMusicToPlaylist(musicID);
+        mToPl.execute();
     }
     public void RemoveMusicFrom(String musicName) {Log.d("zene sikeresen eltávolítva a lejátszási listából", musicName);
     }

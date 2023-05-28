@@ -207,6 +207,25 @@ public class HomePageActivity extends AppCompatActivity {
                 PlaylistCommand addToPlaylist = new PlaylistCommand(p,PlaylistAction.AddNewMusic,currentMusicID);
                 try {
                     addToPlaylist.call();
+                    addToPlaylistButton.setVisibility(View.INVISIBLE);
+                    removeFromPlaylistButton.setVisibility(View.VISIBLE);
+                } catch (ExecutionException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        removeFromPlaylistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Playlist p = new Playlist();
+                PlaylistCommand removeFromPlaylist = new PlaylistCommand(p,PlaylistAction.RemoveMusicFrom,currentMusicID);
+                try {
+                    removeFromPlaylist.call();
+                    addToPlaylistButton.setVisibility(View.VISIBLE);
+                    removeFromPlaylistButton.setVisibility(View.INVISIBLE);
                 } catch (ExecutionException e) {
                     throw new RuntimeException(e);
                 } catch (InterruptedException e) {
