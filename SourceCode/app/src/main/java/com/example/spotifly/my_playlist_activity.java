@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
-public class HomePageActivity extends AppCompatActivity {
+public class my_playlist_activity extends AppCompatActivity {
 
     ListView musicList;
-    FloatingActionButton playButton,pauseButton,addToPlaylistButton,removeFromPlaylistButton;
+    FloatingActionButton playButton,pauseButton,removeFromPlaylistButton;
 
     ImageView music_cover;
 
@@ -33,28 +33,24 @@ public class HomePageActivity extends AppCompatActivity {
     ArrayList<Integer> musicsAdded = new ArrayList<>();
 
     TextView musicTitle, music_author;
-    Boolean hasThisMusic;
     Button playlist_btn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_page);
+        setContentView(R.layout.my_playlist);
         musicList = (ListView)findViewById(R.id.music_list);
         playButton = (FloatingActionButton) findViewById(R.id.action_start);
         pauseButton = (FloatingActionButton) findViewById(R.id.action_pause);
         music_cover = (ImageView)findViewById(R.id.music_cover);
         music_author = (TextView)findViewById(R.id.music_author);
-        addToPlaylistButton = (FloatingActionButton)findViewById(R.id.add_to_playlist_btn);
         music_cover.setVisibility(View.INVISIBLE);
 
         AudioPlayer au = new AudioPlayer(2,pauseButton,playButton);
         au.audioPlayerSetState();
 
-        addToPlaylistButton.setVisibility(View.INVISIBLE);
         removeFromPlaylistButton = (FloatingActionButton)findViewById(R.id.remove_btn_from_playlist);
-        removeFromPlaylistButton.setVisibility(View.INVISIBLE);
 
         playlist_btn = (Button)findViewById(R.id.playlist_btn);
 
@@ -83,7 +79,7 @@ public class HomePageActivity extends AppCompatActivity {
     protected void getMusics(){
 
 
-        AsyncGetMusics task = new AsyncGetMusics();
+        AsyncGetPlaylistMusic task = new AsyncGetPlaylistMusic();
         try {
             musics = task.execute().get();
             Log.d("musics", musics.get(0).title);
@@ -105,10 +101,7 @@ public class HomePageActivity extends AppCompatActivity {
 
             Integer MusicClickCount = 1;
 
-
-
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                hasThisMusic = false;
                 if(MusicClickCount!=1){
                     MusicCommand pauseMusic = new MusicCommand(m,MusicAction.Replay,musics.get(position).rawID);
                     pauseMusic.call();
@@ -116,47 +109,15 @@ public class HomePageActivity extends AppCompatActivity {
                     musicTitle.setText(musics.get(position).title);
                     music_author.setText(musics.get(position).author);
 
-
-
                     AudioPlayer au = new AudioPlayer(1,pauseButton,playButton);
                     au.audioPlayerSetState();
-
-
-
-
-
-
 
                     String variableValue = musics.get(position).rawID;
                     music_cover.setImageResource(getResources().getIdentifier(variableValue, "drawable", getPackageName()));
                     music_cover.setVisibility(View.VISIBLE);
                     checkTheAddedMusics();
-
-                    for (int i = 0; i < musicsAdded.size(); i++) {
-                        //Log.d("elements", musicsAdded.get(i).toString());
-                        if(musics.get(position).id == musicsAdded.get(i)) {
-                            hasThisMusic = true;
-                        }
-
-
-                    }
-                    if(hasThisMusic){
-                        removeFromPlaylistButton.setVisibility(View.VISIBLE);
-                        addToPlaylistButton.setVisibility(View.INVISIBLE);
-                    }else{
-                        removeFromPlaylistButton.setVisibility(View.INVISIBLE);
-                        addToPlaylistButton.setVisibility(View.VISIBLE);
-                    }
-
-
-
-
-
-
-
                     currentMusicID = musics.get(position).id;
                     //Log.d("currID", currentMusicID.toString());
-
                 }
                 else{
                     MusicCommand startMusic = new MusicCommand(m,MusicAction.Start,musics.get(position).rawID);
@@ -172,28 +133,8 @@ public class HomePageActivity extends AppCompatActivity {
                     music_cover.setVisibility(View.VISIBLE);
                     checkTheAddedMusics();
 
-                    for (int i = 0; i < musicsAdded.size(); i++) {
-                        //Log.d("elements", musicsAdded.get(i).toString());
-                        if(musics.get(position).id == musicsAdded.get(i)) {
-                            hasThisMusic = true;
-                        }
-
-
-                    }
-                    if(hasThisMusic){
-                        removeFromPlaylistButton.setVisibility(View.VISIBLE);
-                        addToPlaylistButton.setVisibility(View.INVISIBLE);
-                    }else{
-                        removeFromPlaylistButton.setVisibility(View.INVISIBLE);
-                        addToPlaylistButton.setVisibility(View.VISIBLE);
-                    }
-
-
                     currentMusicID = musics.get(position).id;
                     //Log.d("currID", currentMusicID.toString());
-
-
-
                 }
             }
         });
@@ -219,23 +160,6 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        addToPlaylistButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Playlist p = new Playlist();
-                PlaylistCommand addToPlaylist = new PlaylistCommand(p,PlaylistAction.AddNewMusic,currentMusicID);
-                try {
-                    addToPlaylist.call();
-                    addToPlaylistButton.setVisibility(View.INVISIBLE);
-                    removeFromPlaylistButton.setVisibility(View.VISIBLE);
-                } catch (ExecutionException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
         removeFromPlaylistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,8 +167,6 @@ public class HomePageActivity extends AppCompatActivity {
                 PlaylistCommand removeFromPlaylist = new PlaylistCommand(p,PlaylistAction.RemoveMusicFrom,currentMusicID);
                 try {
                     removeFromPlaylist.call();
-                    addToPlaylistButton.setVisibility(View.VISIBLE);
-                    removeFromPlaylistButton.setVisibility(View.INVISIBLE);
                 } catch (ExecutionException e) {
                     throw new RuntimeException(e);
                 } catch (InterruptedException e) {
@@ -256,13 +178,7 @@ public class HomePageActivity extends AppCompatActivity {
         playlist_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (true){
-                    Log.d("TAG", "idaig eljut: ");
-                    startActivity(new Intent(HomePageActivity.this, my_playlist_activity.class));
-                }
-                else {
-                    startActivity(new Intent(HomePageActivity.this, LandingPageActivity.class));
-                }
+                startActivity(new Intent(my_playlist_activity.this, LandingPageActivity.class));
             }
         });
 
