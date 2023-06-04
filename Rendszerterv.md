@@ -123,3 +123,13 @@ Az adatbázis adattáblái:
 | name          	  | varchar      	| a lejátszási lista címe                      |
 | created_at 	| timestamp 	| hozzáadás dátuma              |
 | update_at 	| timestamp 	| frissítés dátuma leírása              |
+
+
+**playlist_music Tábla** (A lejátszási listákat a zenékkel összekötő tábla)<br>
+| Mező              	| Típus  	|        Leírás                	     |
+|-------------------	|----------	|-----------------------------	   |
+| id          	      | int     	| azonosító, elsődleges kulcs      |
+| playlist_id          	  | int      	| a lejátszási lista id-je                     |
+| music_id          	  | int      	| a zene id-je                     |
+| created_at 	| timestamp 	| hozzáadás dátuma              |
+| update_at 	| timestamp 	| frissítés dátuma leírása              |
