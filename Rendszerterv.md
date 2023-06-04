@@ -26,3 +26,5 @@ Projekt terv
 	- ### Adatbázis munkálatok: ### 
         - Résztvevői: Lehoczki Gergő Péter
         - Feladatuk az alkalmazás számára biztosítani egy átgondolt és rendezett adatbázist az adatok biztonságos tárolásának garantálása mellett.
+- ### 3. Ütemterv ###
+    - Meetingek igényszerint spontán egyéb időpontokban megtartva. Fejlesztés részben egyéni ütemben, a többieket ezzel nem hátrálatva.
