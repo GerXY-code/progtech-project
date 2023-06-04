@@ -26,5 +26,10 @@ Projekt terv
 	- ### Adatbázis munkálatok: ### 
         - Résztvevői: Lehoczki Gergő Péter
         - Feladatuk az alkalmazás számára biztosítani egy átgondolt és rendezett adatbázist az adatok biztonságos tárolásának garantálása mellett.
-- ### 3. Ütemterv ###
+- ### Ütemterv ###
     - Meetingek igényszerint spontán egyéb időpontokban megtartva. Fejlesztés részben egyéni ütemben, a többieket ezzel nem hátrálatva.
+- ### Mérföldkövek ###
+	-1. A dokumentáció elkészítése.
+	-2. A funkciók létrehozása és manuális, kisebb tesztelések a működés szempontjából. Egy funkcionális demó alkalmazás elkészítése.
+	-3. A program teljeskörű tesztelése. Ennél a mérföldkőnél rendelkezésre fog állni a program közel egésze, illetve működőképes lesz.
+	-4. A kényelmi funkciók kialakítása és tökéletesítése, illetve a dizájn kerül beépítésre.
