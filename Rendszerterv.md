@@ -14,3 +14,15 @@ Projekt terv
 - ### Projektszerepkörök, felelőségek ###
     - A projektszerepkörök és felelőségek a feladatok típusától, összetettségétől és az illető hozzáértésétől is függ. A feladat elosztás fő szempontjai az egyéni igények illetve a kompetenciák függvényében történik. Továbbá, ha valamelyik csapattag az egyéni fejlődése érdekében egyéb technológiát kíván használni, erre természetese lehetősége van a kompatibilitás biztosításának függvényében.
     - Valamilyen szinten ezek a szerepkörök átjárhatók inspiráció, segítség nyújtás vagy egyéni igények alapján a csapat kollektív fejlődése és csapatépítés érdekében.
+- ### Projektmunkások és felelőségek ###
+    - ### Front-end munkálatok: ### 
+        - Résztvevői: Huszka Dániel
+        - Feladatuk az alkalmazás kinézetének létrehozása.
+        
+	- ### Back-end munkálatok: ### 
+        - Résztvevői: Lehoczki Gergő Péter és Huszka Dániel
+        - Feladatuk az alkalmazás funkcionalitásának biztosítása, kommunikáció az adatbázissal, inputok fogadása és feldolgozása a felhasználói felületről.
+
+	- ### Adatbázis munkálatok: ### 
+        - Résztvevői: Lehoczki Gergő Péter
+        - Feladatuk az alkalmazás számára biztosítani egy átgondolt és rendezett adatbázist az adatok biztonságos tárolásának garantálása mellett.
