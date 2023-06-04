@@ -37,3 +37,15 @@ Projekt terv
 	 - Funkciók létrehozása és manuális, kisebb tesztelések a működés szempontjából. Egy funkcionális demó alkalmazás elkészítése.
 	 - Program teljeskörű tesztelése. Ennél a mérföldkőnél rendelkezésre fog állni a program közel egésze, illetve működőképes lesz.
 	 - Kényelmi funkciók kialakítása és tökéletesítése, illetve a dizájn kerül beépítésre.
+
+Üzleti folyamatok modellje
+-------
+
+- Üzleti szereplők:
+	- Felhasználók: Felhasználóvá a felületen történő regisztrációval válhat a látogató.
+
+- Üzleti folyamatok: 
+  - Felhasználó regisztrációja: A felhasználó egy regisztrációs oldal kitöltésével tud regisztrálni. A sikeres regisztrációhoz az alábbi adatok megadása szükséges.    
+    - Felhasználónév
+    - Jelszó (A jelszavak titkosítás után kerülnek eltárolásra az adatbázisban)
+  - Felhasználó azonosítása: A felhasználó a bejelentkezés során a megfelelő mezőkbe megadja felhasználónevét és jelszavát, majd a rendszer ellenőrzi, hogy a felhasználó szerepel-e az adatbázisban. Amennyiben szerepel, a rendszer ellenrőzi a felhasználótól érkezett jelszó egyezik-e az adatbázisban tárolta. Ha az azonosítás sikeres, a felhasználó a nyitó oldalára kerül. Amennyiben az azonosítás sikertelen, a rendszer értesíti, hogy miért volt sikertelen a bejelentkezés.
