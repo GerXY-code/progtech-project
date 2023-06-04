@@ -17,11 +17,12 @@ public class AsyncLogin extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... strings) {
+        ConnectionInfo ci = new ConnectionInfo();
 
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://10.1.187.67/spotifly", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://"+ci.IPAddress+"/spotifly", "root", "");
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO users(username,email,password) VALUES('"+username+"','"+email+"','"+password+"')");
 
