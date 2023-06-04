@@ -115,3 +115,11 @@ Az adatbázis adattáblái:
 | length      	| time  	| a zene hossza      |
 | created_at 	| timestamp 	| hozzáadás dátuma              |
 | update_at 	| timestamp 	| frissítés dátuma leírása              |
+
+**playlist Tábla** (A lejátszási listákat tartalmazó tábla)<br>
+| Mező              	| Típus  	|        Leírás                	     |
+|-------------------	|----------	|-----------------------------	   |
+| id          	      | int     	| azonosító, elsődleges kulcs      |
+| name          	  | varchar      	| a lejátszási lista címe                      |
+| created_at 	| timestamp 	| hozzáadás dátuma              |
+| update_at 	| timestamp 	| frissítés dátuma leírása              |
