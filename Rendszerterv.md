@@ -82,4 +82,19 @@ Funkcionális terv
 	  - Az oldal közepén láthatunk gombokat, melyekkel a zenét kezelhetjük.
 	  - Alul a zenék alatt még látható egy gomb, mellyel megnyithatjuk saját lejátszási listánkat, amely ha még nincs, akkor egy olyan oldalra visz minket az alkalmazás, ahol elkészíthetjük azt.
 
-
+Fizikai környezet
+---------
+ - Adatbázis: Oracle-MySQL
+ - Programozási nyelvek
+   - Back-end: Java
+   - Adatbázis: SQL, PL/SQL
+ - Fejlesztői eszközök
+   - Android Studio
+   - XAMPP (Apache és MySQL service)
+   - MySQL workbench
+ - Verziókezelést segítő eszközök
+   - Github Desktop
+ - Az alkalmazás jellege
+   - Androidos alkalmazás
+ - Szükséges rendszerkövetelmények
+   - Androidos telefon
