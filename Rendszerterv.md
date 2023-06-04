@@ -133,3 +133,11 @@ Az adatbázis adattáblái:
 | music_id          	  | int      	| a zene id-je                     |
 | created_at 	| timestamp 	| hozzáadás dátuma              |
 | update_at 	| timestamp 	| frissítés dátuma leírása              |
+
+**subscriptions Tábla** (Az előfizetéseket tartalmazó tábla)<br>
+| Mező              	| Típus  	|        Leírás                	     |
+|-------------------	|----------	|-----------------------------	   |
+| id          	      | int     	| azonosító, elsődleges kulcs      |
+| tier          	  | varchar      	| az előfizetés neve                      |
+| created_at 	| timestamp 	| hozzáadás dátuma              |
+| update_at 	| timestamp 	| frissítés dátuma leírása              |
