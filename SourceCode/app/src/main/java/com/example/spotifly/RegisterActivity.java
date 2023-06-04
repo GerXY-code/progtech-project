@@ -60,9 +60,13 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 new AsyncRegister().execute();
+                goToHomePage();
 
 
+            }
 
+            public void goToHomePage(){
+                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
             }
 
         });
