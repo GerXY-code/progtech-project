@@ -49,3 +49,15 @@ Projekt terv
     - Felhasználónév
     - Jelszó (A jelszavak titkosítás után kerülnek eltárolásra az adatbázisban)
   - Felhasználó azonosítása: A felhasználó a bejelentkezés során a megfelelő mezőkbe megadja felhasználónevét és jelszavát, majd a rendszer ellenőrzi, hogy a felhasználó szerepel-e az adatbázisban. Amennyiben szerepel, a rendszer ellenrőzi a felhasználótól érkezett jelszó egyezik-e az adatbázisban tárolta. Ha az azonosítás sikeres, a felhasználó a nyitó oldalára kerül. Amennyiben az azonosítás sikertelen, a rendszer értesíti, hogy miért volt sikertelen a bejelentkezés.
+
+Követelmények
+------
+- Dizájn
+    - Színes dizájn
+- Regisztráció / Bejelentkezés
+    - A felhasználó tudjon bejelentkezni, valamint regisztrálni, ha nincsen még fiókja. Felhasználó névvel, valamint egy tetszőlegesen megadott jelszóval.
+- Lejátszási listák
+    - A lejátszási listák annyi zenét tartalmaznak, amennyit a felhasználó előfizetése megenged neki.
+    -  A megoldott lejátszási listák zenéit minden felhasználónak külön egy adatbázisban tárolni, melyből könnyen lehet csoportosítani.
+- Adatbázis
+    - Relációs adatbázis az adatok tárolására a megoldott lejátszási listákra kapcsolatosan minden felhasználóra.
