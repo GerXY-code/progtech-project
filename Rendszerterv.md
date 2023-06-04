@@ -98,3 +98,20 @@ Fizikai környezet
    - Androidos alkalmazás
  - Szükséges rendszerkövetelmények
    - Androidos telefon
+
+Adatbázis terv
+------
+A szükséges adatokat MySQL adatbázisban tároljuk, itt lesznek a felhasználó és lejátszási listák adatai.
+
+Az adatbázis adattáblái:
+
+**musics Tábla** (A zenéket tartalmazó tábla)<br>
+| Mező              	| Típus  	|        Leírás                	     |
+|-------------------	|----------	|-----------------------------	   |
+| id          	      | int     	| azonosító, elsődleges kulcs      |
+| raw_id               	| varchar  	| egyedi id a kódolás segítésére                 |
+| title          	  | varchar      	| a zene címe                      |
+| author            	| varchar  	| a zene szerzője      |
+| length      	| time  	| a zene hossza      |
+| created_at 	| timestamp 	| hozzáadás dátuma              |
+| update_at 	| timestamp 	| frissítés dátuma leírása              |
