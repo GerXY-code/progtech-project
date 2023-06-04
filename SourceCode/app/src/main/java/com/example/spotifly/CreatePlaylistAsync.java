@@ -39,8 +39,8 @@ class CreatePlaylistAsync extends AsyncTask {
             Statement statement = connection.createStatement();
             Statement statement2 = connection.createStatement();
             Statement statement3 = connection.createStatement();
-            statement.executeUpdate("INSERT INTO playlists(name) VALUES('"+playListName+"')");
-            ResultSet resultSet = statement2.executeQuery("SELECT id FROM playlists WHERE name=('"+playListName+"')");
+            statement.executeUpdate("INSERT INTO playlist(name) VALUES('"+playListName+"')");
+            ResultSet resultSet = statement2.executeQuery("SELECT id FROM playlist WHERE name=('"+playListName+"')");
             while(resultSet.next()) {
                 playListActualID = Integer.valueOf(resultSet.getString(1));
 

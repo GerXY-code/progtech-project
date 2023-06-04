@@ -74,6 +74,7 @@ public class LandingPageActivity extends AppCompatActivity {
                 PlaylistCommand createPlaylsit = new PlaylistCommand(p,PlaylistAction.CreatePlaylist,currentMusicID, playlistName);
                 try {
                     createPlaylsit.call();
+                    startActivity(new Intent(LandingPageActivity.this, HomePageActivity.class));
                 } catch (ExecutionException e) {
                     throw new RuntimeException(e);
                 } catch (InterruptedException e) {

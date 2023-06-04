@@ -1,10 +1,12 @@
 package com.example.spotifly;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     TextView musicTitle, music_author;
     Boolean hasThisMusic;
+    Button playlist_btn;
 
 
     @Override
@@ -53,6 +56,7 @@ public class HomePageActivity extends AppCompatActivity {
         removeFromPlaylistButton = (FloatingActionButton)findViewById(R.id.remove_btn_from_playlist);
         removeFromPlaylistButton.setVisibility(View.INVISIBLE);
 
+        playlist_btn = (Button)findViewById(R.id.playlist_btn);
 
         musicTitle = (TextView)findViewById(R.id.music_title);
         getMusics();
@@ -246,6 +250,13 @@ public class HomePageActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+            }
+        });
+
+        playlist_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, LandingPageActivity.class));
             }
         });
 
