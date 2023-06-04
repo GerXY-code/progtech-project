@@ -61,3 +61,25 @@ Követelmények
     -  A megoldott lejátszási listák zenéit minden felhasználónak külön egy adatbázisban tárolni, melyből könnyen lehet csoportosítani.
 - Adatbázis
     - Relációs adatbázis az adatok tárolására a megoldott lejátszási listákra kapcsolatosan minden felhasználóra.
+
+Funkcionális terv
+-------
+- Rendszerszereplők
+  - Sima felhasználó.
+  
+- Rendszerhasználati esetek és lefutásaik
+  - Sima felhasználó
+    - Regisztrálhat
+	- Készíthet saját lejátszási listát
+	- Saját lejátszási listájából törölhet, illetve adhat is hozzá zenét
+	- Saját lejátszási listájából is, illetve az összes zenéből is hallgathat zenét
+- Menü hierarchiák
+    - Bejelentkező/Regisztrációs oldal
+	  - Sikeres bejelentkezés vagy regisztrálás után a főoldalra irányít minket át az oldal
+	- Főoldal
+	  - Ezt az oldalt csak a bejelentkezett felhasználók láthatják
+	  - Alul kiválaszthatjuk a lejátszani kívánt zenét.
+	  - Az oldal közepén láthatunk gombokat, melyekkel a zenét kezelhetjük.
+	  - Alul a zenék alatt még látható egy gomb, mellyel megnyithatjuk saját lejátszási listánkat, amely ha még nincs, akkor egy olyan oldalra visz minket az alkalmazás, ahol elkészíthetjük azt.
+
+
