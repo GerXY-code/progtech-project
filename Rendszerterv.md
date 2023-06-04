@@ -141,3 +141,13 @@ Az adatbázis adattáblái:
 | tier          	  | varchar      	| az előfizetés neve                      |
 | created_at 	| timestamp 	| hozzáadás dátuma              |
 | update_at 	| timestamp 	| frissítés dátuma leírása              |
+
+**users Tábla** (A felhasználókat tartalmazó tábla)<br>
+| Mező              	| Típus  	|        Leírás                	     |
+|-------------------	|----------	|-----------------------------	   |
+| id          	      | int     	| azonosító, elsődleges kulcs      |
+| username            	| varchar  	| név                 |
+| email          	  | varchar      	| email                     |
+| password            	| varchar  	| jelszó      |
+| created_at 	| timestamp 	| hozzáadás dátuma              |
+| update_at 	| timestamp 	| frissítés dátuma leírása              |
