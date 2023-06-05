@@ -97,7 +97,7 @@ Fizikai környezet
  - Az alkalmazás jellege
    - Androidos alkalmazás
  - Szükséges rendszerkövetelmények
-   - Androidos telefon
+   - Androidos telefon (legalább 7.0-as verzió)
 
 Adatbázis terv
 ------
