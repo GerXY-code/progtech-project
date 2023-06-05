@@ -176,3 +176,10 @@ Implementációs terv
 
 Az implemntációs terv egy egyszerű folyamat, amely során a felhasználó a Play Áruházból letudja tölteni androidos telefonjára az alkalmazást ingyen. 
 Az alkalmazás támogatottsága az android 7.0-as verziójú telefonoktól indul, ez alatt felmerülhetnek kompatibilitásbeli problémák az alkalmazással. 
+
+Telepítési terv
+------
+
+ - Első lépésként az adatbázist fogjuk telepíteni egy külső szolgáltatónál, ahol a MySQL adatbázisunkat tudjuk üzemeltetni. 
+ - Ezt követi az alkalmazás APK-filera való buildelése, amelyet aztán a Play Áruházzal közös megegyezés után, feltöltünk, letölthető alkalmazásként a Play Áruházba.
+ - Ezután a felhasználónak már csak lekell töltenie az alkalmazást, és használni.
