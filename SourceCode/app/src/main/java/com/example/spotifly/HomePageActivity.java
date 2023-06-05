@@ -258,7 +258,7 @@ public class HomePageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (true){
                     Log.d("TAG", "idaig eljut: ");
-                    startActivity(new Intent(HomePageActivity.this, my_playlist_activity.class));
+                    startActivity(new Intent(HomePageActivity.this, My_playlist_activity.class));
                 }
                 else {
                     startActivity(new Intent(HomePageActivity.this, LandingPageActivity.class));
