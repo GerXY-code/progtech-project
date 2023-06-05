@@ -169,3 +169,10 @@ Az adatbázis adattáblái:
 | subscription_id          	  | int      	| az adott felhasználóhoz tartozó feliratkozási tipus id-ja                     |
 | created_at 	| timestamp 	| hozzáadás dátuma              |
 | update_at 	| timestamp 	| frissítés dátuma leírása              |
+
+
+Implementációs terv
+------
+
+Az implemntációs terv egy egyszerű folyamat, amely során a felhasználó a Play Áruházból letudja tölteni androidos telefonjára az alkalmazást ingyen. 
+Az alkalmazás támogatottsága az android 7.0-as verziójú telefonoktól indul, ez alatt felmerülhetnek kompatibilitásbeli problémák az alkalmazással. 
