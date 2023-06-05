@@ -15,11 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
-public class my_playlist_activity extends AppCompatActivity {
+public class My_playlist_activity extends AppCompatActivity {
 
     ListView musicList;
     FloatingActionButton playButton,pauseButton,removeFromPlaylistButton;
@@ -32,9 +35,11 @@ public class my_playlist_activity extends AppCompatActivity {
 
     ArrayList<Integer> musicsAdded = new ArrayList<>();
 
-    TextView musicTitle, music_author;
-    Button playlist_btn;
+    TextView musicTitle, music_author, playlistcim_txt;
+    Button playlist_btn, home_btn;
+    Boolean playingMusic = false;
 
+    String nameOfPlaylist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,7 @@ public class my_playlist_activity extends AppCompatActivity {
         music_cover = (ImageView)findViewById(R.id.music_cover);
         music_author = (TextView)findViewById(R.id.music_author);
         music_cover.setVisibility(View.INVISIBLE);
+        playlistcim_txt = (TextView)findViewById(R.id.playlistcim_txt);
 
         AudioPlayer au = new AudioPlayer(2,pauseButton,playButton);
         au.audioPlayerSetState();
@@ -53,6 +59,7 @@ public class my_playlist_activity extends AppCompatActivity {
         removeFromPlaylistButton = (FloatingActionButton)findViewById(R.id.remove_btn_from_playlist);
 
         playlist_btn = (Button)findViewById(R.id.playlist_btn);
+        home_btn = (Button)findViewById(R.id.home_btn);
 
         musicTitle = (TextView)findViewById(R.id.music_title);
         getMusics();
@@ -74,7 +81,12 @@ public class my_playlist_activity extends AppCompatActivity {
         }
     }
 
-
+    /*protected void getPlaylistName(){
+        AsyncGetPlaylistName task = new AsyncGetPlaylistName();
+        nameOfPlaylist = task.execute().get();
+        playlistcim_txt.setText(nameOfPlaylist);
+    }
+     */
 
     protected void getMusics(){
 
@@ -117,6 +129,7 @@ public class my_playlist_activity extends AppCompatActivity {
                     music_cover.setVisibility(View.VISIBLE);
                     checkTheAddedMusics();
                     currentMusicID = musics.get(position).id;
+                    playingMusic = true;
                     //Log.d("currID", currentMusicID.toString());
                 }
                 else{
@@ -134,6 +147,7 @@ public class my_playlist_activity extends AppCompatActivity {
                     checkTheAddedMusics();
 
                     currentMusicID = musics.get(position).id;
+                    playingMusic = true;
                     //Log.d("currID", currentMusicID.toString());
                 }
             }
@@ -146,6 +160,8 @@ public class my_playlist_activity extends AppCompatActivity {
                 AudioPlayer au = new AudioPlayer(1,pauseButton,playButton);
                 au.audioPlayerSetState();
                 startMusic.call();
+                playingMusic = true;
+                Log.d("helyzet:", playingMusic.toString());
 
             }
         });
@@ -156,6 +172,8 @@ public class my_playlist_activity extends AppCompatActivity {
                 AudioPlayer au = new AudioPlayer(0,pauseButton,playButton);
                 au.audioPlayerSetState();
                 startMusic.call();
+                playingMusic = false;
+                Log.d("helyzet:", playingMusic.toString());
 
             }
         });
@@ -167,6 +185,8 @@ public class my_playlist_activity extends AppCompatActivity {
                 PlaylistCommand removeFromPlaylist = new PlaylistCommand(p,PlaylistAction.RemoveMusicFrom,currentMusicID);
                 try {
                     removeFromPlaylist.call();
+                    getMusics();
+                    checkTheAddedMusics();
                 } catch (ExecutionException e) {
                     throw new RuntimeException(e);
                 } catch (InterruptedException e) {
@@ -178,9 +198,29 @@ public class my_playlist_activity extends AppCompatActivity {
         playlist_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(my_playlist_activity.this, LandingPageActivity.class));
+                if(playingMusic){
+                    MusicCommand startMusic = new MusicCommand(m,MusicAction.Pause,Position);
+                    AudioPlayer au = new AudioPlayer(0,pauseButton,playButton);
+                    au.audioPlayerSetState();
+                    startMusic.call();
+                }
+                startActivity(new Intent(My_playlist_activity.this, My_playlist_activity.class));
             }
         });
+        home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(playingMusic){
+                    MusicCommand startMusic = new MusicCommand(m,MusicAction.Pause,Position);
+                    AudioPlayer au = new AudioPlayer(0,pauseButton,playButton);
+                    au.audioPlayerSetState();
+                    startMusic.call();
+                }
+                startActivity(new Intent(My_playlist_activity.this, HomePageActivity.class));
+            }
+        });
+
+
 
 
     }
