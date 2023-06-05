@@ -151,3 +151,21 @@ Az adatbázis adattáblái:
 | password            	| varchar  	| jelszó      |
 | created_at 	| timestamp 	| hozzáadás dátuma              |
 | update_at 	| timestamp 	| frissítés dátuma leírása              |
+
+**user_playlists Tábla** (Kapcsolótábla, összekapcsolja a felhasználókat a lejátszási listákkal)<br>
+| Mező              	| Típus  	|        Leírás                	     |
+|-------------------	|----------	|-----------------------------	   |
+| id          	      | int     	| azonosító, elsődleges kulcs      |
+| user_id            	| int  	| az adott felhasználó id-ja                 |
+| playlist_id          	  | int      	| az adott felhasználóhoz tartozó lejátszási lista id-ja                     |
+| created_at 	| timestamp 	| hozzáadás dátuma              |
+| update_at 	| timestamp 	| frissítés dátuma leírása              |
+
+**user_subscriptions Tábla** (Kapcsolótábla, összekapcsolja a felhasználókat a feliratkozási csomagjaikkal)<br>
+| Mező              	| Típus  	|        Leírás                	     |
+|-------------------	|----------	|-----------------------------	   |
+| id          	      | int     	| azonosító, elsődleges kulcs      |
+| user_id            	| int  	| az adott felhasználó id-ja                 |
+| subscription_id          	  | int      	| az adott felhasználóhoz tartozó feliratkozási tipus id-ja                     |
+| created_at 	| timestamp 	| hozzáadás dátuma              |
+| update_at 	| timestamp 	| frissítés dátuma leírása              |
