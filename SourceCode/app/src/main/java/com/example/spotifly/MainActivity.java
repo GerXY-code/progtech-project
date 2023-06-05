@@ -75,7 +75,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToHomePage(){
-        startActivity(new Intent(MainActivity.this, HomePageActivity.class));
+        //Miért a homepage-re?
+        //A landing-pagen tud létrehozni új lejátszási listát a user
+        //Ha már van neki, akkor nem tud, de akkor meg legyen ott egy gomb, ami elviszi őt a lejátszási listájára
+        //startActivity(new Intent(MainActivity.this, LandingPageActivity.class));
+        startActivity(new Intent(MainActivity.this, LandingPageActivity.class));
     }
 
 }
