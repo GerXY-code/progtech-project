@@ -19,9 +19,6 @@ public class CurrentUser extends UserBase{
        setPassword    = password;
    }
 
-
-
-
     @Override
     public String getUserName(){
         String username = setUserName;

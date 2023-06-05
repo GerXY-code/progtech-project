@@ -100,6 +100,8 @@ public class RegisterActivity extends AppCompatActivity {
     String username = RegisterActivity.usernameVerified;
      String email = RegisterActivity.emailVerified;
      String password = RegisterActivity.hashedPassword;
+
+
     @Override
     protected String doInBackground(String... strings) {
         ConnectionInfo ci = new ConnectionInfo();
