@@ -26,7 +26,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     ImageView music_cover;
 
-    Integer length,currentMusicID;
+    Integer length,currentMusicID, playlistCount;
     String Position;
     ArrayList<CurrentMusic> musics = new ArrayList<>();
 
@@ -61,6 +61,7 @@ public class HomePageActivity extends AppCompatActivity {
         musicTitle = (TextView)findViewById(R.id.music_title);
         getMusics();
         checkTheAddedMusics();
+        HavePlaylist();
         Music m = new Music(this);
 
     }
@@ -77,8 +78,19 @@ public class HomePageActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
     }
+    public void HavePlaylist(){
+        AsyncHaveUsersPlaylist task2 = new AsyncHaveUsersPlaylist();
+        try {
+            playlistCount = task2.execute().get();
+            Log.d("számolás eredmenye", playlistCount.toString());
+            //Log.d("musicsAddedAlready", musicsAdded.get(0).toString());
 
-
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     protected void getMusics(){
 
@@ -90,8 +102,6 @@ public class HomePageActivity extends AppCompatActivity {
             MusicBaseAdapter mbA = new MusicBaseAdapter(getApplicationContext(),musics);
             musicList.setAdapter(mbA);
 
-
-
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
@@ -99,13 +109,9 @@ public class HomePageActivity extends AppCompatActivity {
         }
         Music m = new Music(this);
 
-
-
         musicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             Integer MusicClickCount = 1;
-
-
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 hasThisMusic = false;
@@ -116,16 +122,8 @@ public class HomePageActivity extends AppCompatActivity {
                     musicTitle.setText(musics.get(position).title);
                     music_author.setText(musics.get(position).author);
 
-
-
                     AudioPlayer au = new AudioPlayer(1,pauseButton,playButton);
                     au.audioPlayerSetState();
-
-
-
-
-
-
 
                     String variableValue = musics.get(position).rawID;
                     music_cover.setImageResource(getResources().getIdentifier(variableValue, "drawable", getPackageName()));
@@ -137,8 +135,6 @@ public class HomePageActivity extends AppCompatActivity {
                         if(musics.get(position).id == musicsAdded.get(i)) {
                             hasThisMusic = true;
                         }
-
-
                     }
                     if(hasThisMusic){
                         removeFromPlaylistButton.setVisibility(View.VISIBLE);
@@ -147,13 +143,6 @@ public class HomePageActivity extends AppCompatActivity {
                         removeFromPlaylistButton.setVisibility(View.INVISIBLE);
                         addToPlaylistButton.setVisibility(View.VISIBLE);
                     }
-
-
-
-
-
-
-
                     currentMusicID = musics.get(position).id;
                     //Log.d("currID", currentMusicID.toString());
 
@@ -254,10 +243,13 @@ public class HomePageActivity extends AppCompatActivity {
         });
 
         playlist_btn.setOnClickListener(new View.OnClickListener() {
+
+
+
             @Override
             public void onClick(View v) {
-                if (true){
-                    Log.d("TAG", "idaig eljut: ");
+                if (playlistCount != 0){
+                    //Log.d("TAG", "idaig eljut: ");
                     startActivity(new Intent(HomePageActivity.this, My_playlist_activity.class));
                 }
                 else {
@@ -265,6 +257,7 @@ public class HomePageActivity extends AppCompatActivity {
                 }
             }
         });
+
 
 
     }

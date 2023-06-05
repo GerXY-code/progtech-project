@@ -15,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -32,10 +35,11 @@ public class My_playlist_activity extends AppCompatActivity {
 
     ArrayList<Integer> musicsAdded = new ArrayList<>();
 
-    TextView musicTitle, music_author;
+    TextView musicTitle, music_author, playlistcim_txt;
     Button playlist_btn, home_btn;
     Boolean playingMusic = false;
 
+    String nameOfPlaylist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class My_playlist_activity extends AppCompatActivity {
         music_cover = (ImageView)findViewById(R.id.music_cover);
         music_author = (TextView)findViewById(R.id.music_author);
         music_cover.setVisibility(View.INVISIBLE);
+        playlistcim_txt = (TextView)findViewById(R.id.playlistcim_txt);
 
         AudioPlayer au = new AudioPlayer(2,pauseButton,playButton);
         au.audioPlayerSetState();
@@ -76,7 +81,12 @@ public class My_playlist_activity extends AppCompatActivity {
         }
     }
 
-
+    /*protected void getPlaylistName(){
+        AsyncGetPlaylistName task = new AsyncGetPlaylistName();
+        nameOfPlaylist = task.execute().get();
+        playlistcim_txt.setText(nameOfPlaylist);
+    }
+     */
 
     protected void getMusics(){
 
@@ -209,6 +219,8 @@ public class My_playlist_activity extends AppCompatActivity {
                 startActivity(new Intent(My_playlist_activity.this, HomePageActivity.class));
             }
         });
+
+
 
 
     }
