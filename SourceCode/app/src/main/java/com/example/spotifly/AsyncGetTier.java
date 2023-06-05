@@ -12,18 +12,18 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-public class AsyncHaveUsersPlaylist extends AsyncTask<Integer, Integer, Integer> {
+public class AsyncGetTier extends AsyncTask<Integer, Integer, Integer> {
     String error = "";
     String currentUsername = MainActivity.username;
     @Override
     protected Integer doInBackground(Integer... integers) {
-        Integer szam = 0;
+        Integer szam = 3;
         ConnectionInfo ci = new ConnectionInfo();
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://" + ci.IPAddress + "/spotifly", "root", "");
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT COUNT(id) FROM playlist WHERE id = (SELECT playlist_id FROM user_playlist WHERE user_id = (SELECT id FROM users WHERE username = '"+currentUsername+"')); ");
+            ResultSet resultSet = statement.executeQuery("SELECT sub_id FROM user_playlist WHERE user_id = (SELECT id FROM users WHERE username = '"+currentUsername+"')");
             while(resultSet.next()){
                 szam = resultSet.getInt(1);
             }

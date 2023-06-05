@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +27,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     ImageView music_cover;
 
-    Integer length,currentMusicID, playlistCount;
+    Integer length,currentMusicID, playlistCount, tierId, musicInPlaylist;
     String Position;
     ArrayList<CurrentMusic> musics = new ArrayList<>();
 
@@ -35,6 +36,7 @@ public class HomePageActivity extends AppCompatActivity {
     TextView musicTitle, music_author;
     Boolean hasThisMusic;
     Button playlist_btn;
+    Boolean playingMusic = false;
 
 
     @Override
@@ -62,6 +64,7 @@ public class HomePageActivity extends AppCompatActivity {
         getMusics();
         checkTheAddedMusics();
         HavePlaylist();
+        WhichTier();
         Music m = new Music(this);
 
     }
@@ -72,6 +75,17 @@ public class HomePageActivity extends AppCompatActivity {
             musicsAdded = task.execute().get();
             //Log.d("musicsAddedAlready", musicsAdded.get(0).toString());
 
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void WhichTier(){
+        AsyncGetTier task3 = new AsyncGetTier();
+        try {
+            tierId = task3.execute().get();
+            Log.d("tier:", tierId.toString());
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
@@ -144,6 +158,7 @@ public class HomePageActivity extends AppCompatActivity {
                         addToPlaylistButton.setVisibility(View.VISIBLE);
                     }
                     currentMusicID = musics.get(position).id;
+                    playingMusic = true;
                     //Log.d("currID", currentMusicID.toString());
 
                 }
@@ -177,7 +192,7 @@ public class HomePageActivity extends AppCompatActivity {
                         addToPlaylistButton.setVisibility(View.VISIBLE);
                     }
 
-
+                    playingMusic = true;
                     currentMusicID = musics.get(position).id;
                     //Log.d("currID", currentMusicID.toString());
 
@@ -194,6 +209,7 @@ public class HomePageActivity extends AppCompatActivity {
                 AudioPlayer au = new AudioPlayer(1,pauseButton,playButton);
                 au.audioPlayerSetState();
                 startMusic.call();
+                playingMusic = true;
 
             }
         });
@@ -204,6 +220,7 @@ public class HomePageActivity extends AppCompatActivity {
                 AudioPlayer au = new AudioPlayer(0,pauseButton,playButton);
                 au.audioPlayerSetState();
                 startMusic.call();
+                playingMusic = false;
 
             }
         });
@@ -211,16 +228,46 @@ public class HomePageActivity extends AppCompatActivity {
         addToPlaylistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Playlist p = new Playlist();
-                PlaylistCommand addToPlaylist = new PlaylistCommand(p,PlaylistAction.AddNewMusic,currentMusicID);
-                try {
-                    addToPlaylist.call();
-                    addToPlaylistButton.setVisibility(View.INVISIBLE);
-                    removeFromPlaylistButton.setVisibility(View.VISIBLE);
-                } catch (ExecutionException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                if (playlistCount != 0){
+
+                    AsyncGetMusicNumberInPlaylist task4 = new AsyncGetMusicNumberInPlaylist();
+                    try {
+                        musicInPlaylist = task4.execute().get();
+                    } catch (ExecutionException e) {
+                        throw new RuntimeException(e);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Integer maxMusicInPlaylist;
+                    Log.d("MUSIC IN:", musicInPlaylist.toString());
+                    if(tierId == 1)
+                        maxMusicInPlaylist = 5;
+                    else if(tierId == 2)
+                        maxMusicInPlaylist = 7;
+                    else
+                        maxMusicInPlaylist = 3;
+
+                    Log.d("MAX MUSIC:", maxMusicInPlaylist.toString());
+                    if (maxMusicInPlaylist > musicInPlaylist){
+
+                        Playlist p = new Playlist();
+                        PlaylistCommand addToPlaylist = new PlaylistCommand(p,PlaylistAction.AddNewMusic,currentMusicID);
+                        try {
+                            addToPlaylist.call();
+                            addToPlaylistButton.setVisibility(View.INVISIBLE);
+                            removeFromPlaylistButton.setVisibility(View.VISIBLE);
+                        } catch (ExecutionException e) {
+                            throw new RuntimeException(e);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Your subscription is not allow to add more music!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Create your playlist first!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -248,8 +295,13 @@ public class HomePageActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                if(playingMusic){
+                    MusicCommand startMusic = new MusicCommand(m,MusicAction.Pause,Position);
+                    AudioPlayer au = new AudioPlayer(0,pauseButton,playButton);
+                    au.audioPlayerSetState();
+                    startMusic.call();
+                }
                 if (playlistCount != 0){
-                    //Log.d("TAG", "idaig eljut: ");
                     startActivity(new Intent(HomePageActivity.this, My_playlist_activity.class));
                 }
                 else {

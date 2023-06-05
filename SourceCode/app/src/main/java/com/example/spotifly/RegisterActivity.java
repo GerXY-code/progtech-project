@@ -21,7 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner sub_spinner;
     public static Integer selectedTier;
 
-    private static final String[] paths = {"item 1", "item 2", "item 3"};
+    private static final String[] paths = {"VIP", "Ultimate", "Normal"};
 
 
     public static String usernameVerified,emailVerified,passwordVerified,hashedPassword;
