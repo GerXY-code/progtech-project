@@ -67,7 +67,7 @@
     <Button
         android:id="@+id/register_navigate_btn"
         android:layout_width="230dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="535dp"
         android:backgroundTint="@android:color/holo_orange_light"
