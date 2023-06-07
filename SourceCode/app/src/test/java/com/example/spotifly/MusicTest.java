@@ -13,18 +13,17 @@ public class MusicTest {
     Context ctx;
     MediaPlayer mp = MediaPlayer.create(ctx,R.raw.one);
 
+    @Test
     public void start(){
-
-
         mp.start();
-
+        assertEquals(true, mp.isPlaying());
     }
 
     @Test
     public void pause() {
         start();
         mp.pause();
-        assertEquals(true,     mp.isPlaying());
+        assertEquals(false,  mp.isPlaying());
 
     }
 }
