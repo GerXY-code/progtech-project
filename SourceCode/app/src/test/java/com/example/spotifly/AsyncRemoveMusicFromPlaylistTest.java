@@ -23,7 +23,9 @@ public class AsyncRemoveMusicFromPlaylistTest {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://"+ci.IPAddress+"/spotifly", "root", "");
             Statement statement = connection.createStatement();
-            statement.executeUpdate(" DELETE FROM playlist_music WHERE playlist_id = (SELECT playlist_id FROM user_playlist JOIN users ON user_playlist.user_id = users.id WHERE username = ('"+username+"')) AND music_id = ('"+musicID+"');");
+            statement.executeUpdate(" DELETE FROM playlist_music WHERE playlist_id = " +
+                    "(SELECT playlist_id FROM user_playlist JOIN users ON user_playlist.user_id = users.id " +
+                    "WHERE username = ('"+username+"')) AND music_id = ('"+musicID+"');");
 
 
         } catch (Exception e) {
